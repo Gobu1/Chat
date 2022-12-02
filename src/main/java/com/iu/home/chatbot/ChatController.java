@@ -59,7 +59,6 @@ public class ChatController {
         wr.flush();
         wr.close();
         int responseCode = con.getResponseCode();
-
         BufferedReader br;
 
         if(responseCode==200) { // 정상 호출
@@ -97,17 +96,13 @@ public class ChatController {
 //                log.info("buble => {}", bubbles);
 //                log.info("data => {}", data);
             } catch (Exception e) {
-                System.out.println("error");
                 e.printStackTrace();
             }
 
             in.close();
         } else {  // 에러 발생
             chatMessage = con.getResponseMessage();
-            log.info(chatMessage);
         }
-        log.info("순서1 ====");
-        log.info("chat Message => {}", chatMessage);
         return chatMessage;
     }
 

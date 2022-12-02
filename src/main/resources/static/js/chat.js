@@ -8,7 +8,7 @@ function wsOpen() {
 
 function wsEvt() {
 	ws.onopen = function (data) {
-		//소켓이 열리면 동작
+		console.log(data);
 	}
 
 	ws.onmessage = function (data) {
@@ -23,7 +23,7 @@ function wsEvt() {
 				}
 			} else if (d.type == "message") {
 				if (d.sessionId == $("#sessionId").val()) {
-					$("#chating").append("<p class='me'>나 :" + d.msg + "</p>");
+					$("#chating").append("<p class='me'>상담사 :" + d.msg + "</p>");
 				} else {
 					$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
 				}
@@ -42,15 +42,9 @@ function wsEvt() {
 }
 
 function chatName() {
-	var userName = $("#userName").val();
-	if (userName == null || userName.trim() == "") {
-		alert("사용자 이름을 입력해주세요.");
-		$("#userName").focus();
-	} else {
-		wsOpen();
-		$("#yourName").hide();
-		$("#yourMsg").show();
-	}
+	wsOpen();
+	$("#yourName").hide();
+	$("#yourMsg").show();
 }
 
 function send() {

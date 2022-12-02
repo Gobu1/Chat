@@ -12,9 +12,9 @@
 
 <body>
 	<div id="container" class="container">
-		<h1>${roomName}의 채팅방</h1>
+		<h1>${room.roomName}의 채팅방</h1>
 		<input type="hidden" id="sessionId" value="">
-		<input type="hidden" id="roomNumber" value="${roomNumber}">
+		<input type="hidden" id="roomNumber" value="${room.roomNumber}">
 		
 		<div id="chating" class="chating">
 		</div>
@@ -23,8 +23,8 @@
 			<table class="inputTable">
 				<tr>
 					<th>사용자명</th>
-					<th><input type="text" name="userName" id="userName"></th>
-					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+					<th><input type="text" name="userName" id="userName" value="안내문구 ㅁㅁ"></th>
+					<th><button onclick="chatName()" id="startBtn">채팅 입장</button></th>
 				</tr>
 			</table>
 		</div>

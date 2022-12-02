@@ -20,9 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SocketHandler extends TextWebSocketHandler {
 	
-HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
 	
-	//HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
 	List<HashMap<String, Object>> rls = new ArrayList<>(); //웹소켓 세션을 담아둘 리스트 ---roomListSessions
 
 	@Override
@@ -32,7 +30,6 @@ HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세�
 		JSONParser jsonParser = new JSONParser();
 		Object msgobj = jsonParser.parse(msg);
 		JSONObject obj = (JSONObject)msgobj;
-		
 		String rN = (String) obj.get("roomNumber");
 		HashMap<String, Object> temp = new HashMap<String, Object>();
 		if(rls.size() > 0) {

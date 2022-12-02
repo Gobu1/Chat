@@ -32,7 +32,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <form class="form-inline">
                                 <div class="form-group">
                                     <label for="msg">문의사항</label>
@@ -40,7 +40,7 @@
                                 </div>
                                 <button id="send" class="btn btn-default" type="submit">보내기</button>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -54,6 +54,15 @@
                                     <tr><td>시작하기 : <button id="connect" class="btn btn-default" type="submit">연결</button></td></tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-inline" id="sendForm">
+                                <div class="form-group">
+                                    <label for="msg">문의사항</label>
+                                    <input type="text" id="msg" class="form-control" placeholder="내용을 입력하세요....">
+                                </div>
+                                <button id="send" class="btn btn-default" type="submit">보내기</button>
+                            </form>
                         </div>
                     </div>
                 </div>

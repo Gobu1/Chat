@@ -1,6 +1,7 @@
 //챗봇 연결 js
 
 var stompClient = null;
+var cons = false;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -30,6 +31,8 @@ function connect() {
                         showMessage("받은 메시지: " + messages[i]); //서버에 메시지 전달 후 리턴받는 메시지
                     }, 500*x);
                 })(i);
+                cons = true;
+                console.log(cons);
             }
         });
     });
@@ -48,7 +51,6 @@ function disconnect() {
 function sendMessage() {
     let message = $("#msg").val()
     showMessage("보낸 메시지: " + message);
-
     stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); //서버에 보낼 메시지
 }
 
@@ -62,7 +64,7 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $("#disconnect").click(function () { disconnect(); });
+    $("#sendForm").hide();
     $("#send").click(function () { sendMessage(); });
     $("#connect").click(function () {
         connect();
@@ -81,24 +83,22 @@ $(document).on("click", ".botcat", (e) => {
     $(e.target).parent().remove();
     stompClient.send("/app/sendMessage", {}, JSON.stringify($(e.target).text()));
     cid = e.target.id;
-    setTimeout(() => {
-        if (cid.includes('qna')) {
-            console.log("qna-cat");
-            qnabtn();
-        } else if (cid.includes('guide')) {
-            console.log("guide-cat");
-            guidebtn();
-        } else if (cid.includes('precautions')) {
-            console.log("pre-cat");
-            prebtn();
-        } else if (cid.includes('import')) {
-            console.log("import-cat");
-            importbtn();
-        } else if (cid.includes('info')) {
-            console.log("info-cat");
-            infobtn();
-        }
-    }, 2000);
+    console.log(cons);
+    if(cons){
+        setTimeout(() => {
+            if (cid.includes('qna')) {
+                qnabtn();
+            } else if (cid.includes('guide')) {
+                guidebtn();
+            } else if (cid.includes('precautions')) {
+                prebtn();
+            } else if (cid.includes('import')) {
+                importbtn();
+            } else if (cid.includes('info')) {
+                infobtn();
+            }
+        }, 1000);
+    }
 });
 
 $(document).on("click", ".botbtn", (e) => {
@@ -108,32 +108,35 @@ $(document).on("click", ".botbtn", (e) => {
     bid = e.target.id;
     setTimeout(() => {
         if (bid.includes('qna')) {
-            console.log("qna");
             qnabtn();
         } else if (bid.includes('guide')) {
-            console.log("guide");
             guidebtn();
         } else if (bid.includes('precautions')) {
-            console.log("pre");
             prebtn();
         } else if (bid.includes('import')) {
-            console.log("import");
             importbtn();
         } else if (bid.includes('info')) {
-            console.log("info");
             infobtn();
         }
         
     }, 2000);
 });
 
-$(document).on("click", "chat", (e) => {
+$(document).on("click", "chatbtn", (e) => {
     showMessage($(e.target).text());
     $(e.target).parent().remove();
+    stompClient.send("/app/sendMessage", {}, JSON.stringify($(e.target).text()));
     $("#communicate").append('<div class="bot chat">' +
-        '<button type="button" class="btn btn-default con" id="">상담사 연결</button>' +
+        '<button type="button" class="btn btn-default con" id="chatConnect">상담사 연결</button>' +
         '<button type="button" class="btn btn-default" id="home">이전단계</button>' +
         '</div>')
+});
+
+$(document).on("click", "chatConnect", (e) => {
+    showMessage($(e.target).text());
+    $(e.target).parent().remove();
+    disconnect();
+    
 });
 
 $(document).on("click", "#home", (e) => {

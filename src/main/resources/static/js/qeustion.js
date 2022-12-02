@@ -5,6 +5,7 @@ function basicmessage(){
     '<button type="button" class="btn btn-default botcat" id="precautions">구디샵 주의사항</button>' +
     '<button type="button" class="btn btn-default botcat" id="import">입점문의</button>' +
     '<button type="button" class="btn btn-default botcat" id="info">개인정보</button>' +
+    '<button type="button" class="btn btn-default" id="chatbtn">상담사 연결</button>' +
     '<button type="button" class="btn btn-default botcat" id="">상담 종료</button>' +
     '</div>')
 }
