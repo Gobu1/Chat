@@ -26,6 +26,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		//메시지 발송
+		log.info("메세지 로그 => {}", message.getPayload());
 		String msg = message.getPayload();
 		JSONParser jsonParser = new JSONParser();
 		Object msgobj = jsonParser.parse(msg);
