@@ -14,7 +14,7 @@ public class ChatSocketConfig implements WebSocketMessageBrokerConfigurer {
 	
 	@Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").withSockJS(); //웹 소캣을 사용하기 위해 설정하는 부분
+        registry.addEndpoint("/ws").withSockJS();//웹 소캣을 사용하기 위해 설정하는 부분
     }
 
     @Override
